@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <record id="autovoyage_service_provider_action" model="ir.actions.act_window">
+        <field name="name">Service Provider</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{'search_default_is_service_provider': 1}</field>
+    </record>
+
+    <record id="view_partner_form_inherit_autovoyage" model="ir.ui.view">
+        <field name="name">res.partner.view.form.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='category_id']" position="after">
+                   <field name="is_service_provider" string='Is Service provider: '/>
+            </xpath>
+            <xpath expr="//page" position="after">
+                <page name="vehicle information" string="Vehicle Information" invisible='not is_service_provider'>
+                    <field name="vehicle_ids" context="{'default_is_vehicle': True, 'default_is_avaliable': True, 'default_owener_id': id}"/>
+                </page>    
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_autovoyage_res_partner_service_provider_search" model="ir.ui.view">
+        <field name="name">res.partner.search</field>
+        <field name="model">res.partner</field>
+        <field name="arch" type="xml">
+            <search string="Service Provider">
+                <filter name="is_service_provider" string="Service Provider" domain="[('is_service_provider', '=', 1)]"/>
+            </search>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="seq_autovoyage_service" model="ir.sequence">
+        <field name="name">AutoVoyage Service Sequence</field>
+        <field name="code">autovoyage.service</field>
+        <field name="prefix">SP</field>
+        <field name="padding">5</field>
+        <field name="number_next">1</field>
+    </record>
+</odoo>

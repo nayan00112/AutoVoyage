@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Action -->
+    <record id="action_autovoyage_service" model="ir.actions.act_window">
+        <field name="name">AutoVoyage Services</field>
+        <field name="res_model">autovoyage.service</field>
+        <field name="view_mode">kanban,form,list</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first service record.
+            </p>
+        </field>
+    </record>
+
+
+    <!-- list View -->
+    <record id="view_autovoyage_service_list" model="ir.ui.view">
+        <field name="name">autovoyage.service.list</field>
+        <field name="model">autovoyage.service</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name" />
+                <field name="service_consumer_id" />
+                <field name="service_provider_id" />
+                <field name="service_start_date" />
+                <field name="service_end_date" />
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_autovoyage_service_form" model="ir.ui.view">
+        <field name="name">autovoyage.service.form</field>
+        <field name="model">autovoyage.service</field>
+        <field name="arch" type="xml">
+            <form string="AutoVoyage Service">
+                <header>
+                    <field name='service_status' widget="statusbar" />
+                    <button id="confirm_service" type="object" name="confirm_service"
+                        class="btn btn-primary">Confirm</button>
+                    <button id="cancle_service" type="object" name="cancle_service" class="btn">
+                        Cancle</button>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <h1>
+                                <field name="name" default='New' />
+                            </h1>
+                        </group>
+                        <newline />
+                        <group>
+                            <group>
+                                <field name="service_consumer_id" />
+                                <field name="service_start_date" />
+                                <field name="user_review" widget="priority" />
+                            </group>
+                            <group>
+                                <field name="service_provider_id"
+                                    domain='[("is_service_provider", "=", 1)]' />
+                                <field name="service_end_date" />
+                            </group>
+                        </group>
+                        <newline />
+                        <group>
+                            <field name="amount" widget="monetary" />
+                            <field name="description" />
+                        </group>
+                        <notebook>
+                            <page name="vehicle_details" string="Vehicle Details">
+                                <group>
+                                    <field name="vehicle_ids" readonly='not service_provider_id'
+                                        domain='[("is_vehicle", "=", 1), ("is_avaliable","=", 1), ("owener_id", "=", service_provider_id)]' />
+                                </group>
+                            </page>
+                        </notebook>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Kanban View -->
+    <!-- <record id="view_autovoyage_service_kanban" model="ir.ui.view">
+        <field name="name">autovoyage.service.kanban</field>
+        <field name="model">autovoyage.service</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="name" />
+                <field name="service_consumer_id" />
+                <field name="service_provider_id" />
+                <field name="service_start_date" />
+                <field name="service_end_date" />
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_card">
+                            <strong>
+                                <field name="name" />
+                            </strong>
+                            <div>
+                                <field name="service_consumer_id" />
+                            </div>
+                            <div>
+                                <field name="service_provider_id" />
+                            </div>
+                            <div>Start: <field name="service_start_date" /></div>
+                            <div>End: <field name="service_end_date" /></div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record> -->
+
+    <record id="view_autovoyage_service_kanban" model="ir.ui.view">
+        <field name="name">autovoyage.service.kanban</field>
+        <field name="model">autovoyage.service</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_mobile o_kanban_small_column">
+                <field name="name" />
+                <field name="service_consumer_id" />
+                <field name="service_provider_id" />
+                <field name="service_start_date" />
+                <field name="service_end_date" />
+                <field name="amount" />
+                <field name="description" />
+                <field name="service_status" />
+
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_card o_kanban_record">
+                            <!-- Status badge -->
+                            <div class="o_kanban_statusbar">
+                                <field name="service_status" widget="statusbar" />
+                            </div>
+
+                            <!-- Title -->
+                            <div class="o_kanban_primary_left">
+                                <div class="oe_kanban_details">
+                                    <strong class="text-primary" style="font-size: 18px;">
+                                        <field name="name" />
+                                    </strong>
+                                </div>
+                            </div>
+
+                            <!-- Divider -->
+                            <div style="margin: 6px 0; border-bottom: 1px solid #ddd;"></div>
+
+                            <!-- Consumer & Provider -->
+                            <div class="oe_kanban_details">
+                                <span>
+                                    <strong>👤 Consumer:</strong>
+                                    <field name="service_consumer_id" />
+                                </span>
+                                <br />
+                                <span>
+                                    <strong>🧑‍🔧 Provider:</strong>
+                                    <field name="service_provider_id" />
+                                </span>
+                            </div>
+
+                            <!-- Dates -->
+                            <div class="oe_kanban_details">
+                                <span>
+                                    <strong>🗓 Start:</strong>
+                                    <field name="service_start_date" />
+                                </span>
+                                <br />
+                                <span>
+                                    <strong>🗓 End:</strong>
+                                    <field name="service_end_date" />
+                                </span>
+                            </div>
+
+                            <!-- Amount -->
+                            <div class="oe_kanban_details">
+                                <span>
+                                    <strong>💰 Amount:</strong>
+                                    <field name="amount" widget="monetary" />
+                                </span>
+                            </div>
+
+                            <!-- Description -->
+                            <div class="oe_kanban_details o_text_overflow_ellipsis">
+                                <strong>📝 Description:</strong>
+                                <div>
+                                    <field name="description" />
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+</odoo>

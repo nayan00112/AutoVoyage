@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Menu Item (Optional: Add under an existing menu or define a new one) -->
+    <menuitem id="menu_autovoyage_root" name="AutoVoyage" sequence="10" />
+
+    <menuitem id="menu_autovoyage_service" name="Services" parent="menu_autovoyage_root"
+        action="action_autovoyage_service" sequence="20" />
+
+    <menuitem id="menu_autovoyage_Service_Provider" name="Service Provider"
+        parent="menu_autovoyage_root"
+        action="autovoyage.autovoyage_service_provider_action" sequence="20" />
+    
+    <menuitem id="menu_autovoyage_vehicle" name="Vehicles" parent="menu_autovoyage_root"
+        action="autovoyage.action_autovoyage_vehicles" sequence="20" />
+
+
+</odoo>
