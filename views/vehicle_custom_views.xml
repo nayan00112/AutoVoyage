@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-
+    
     <!-- Action -->
     <record id="action_vehicle_custom" model="ir.actions.act_window">
         <field name="name">Vehicles</field>
@@ -47,13 +47,10 @@
                         <field name="vehicle_milage"/>
                         <field name="per_day_cost"/>
                         <field name="is_available"/>
-                        <field name="owener_id" readonly='true'></field>
+                        <field name="owener_id" string='Owner ID' readonly='true'></field>
                     </group>
                 </sheet>
             </form>
         </field>
     </record>
-
-    
-
 </odoo>

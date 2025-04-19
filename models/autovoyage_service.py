@@ -75,14 +75,6 @@ class AutovoyageService(models.Model):
     def _onchange_service_provider_id(self):        
         if self.service_provider_id:
             self.vehicle_ids = [(5, 0, 0)]  # Clear vehicle_ids instantly
-    
-    def _cron_refresh_service_status(self):
-        print('ok', self)
-        # records = self.env['autovoyage.service'].search('[]')
-        # print(records)
-        # # for record in records:
-        # #     print(record)
-        # #     print('okkkkkkkkkkkkkkkkkkkkk')
             
 
     # @api.onchange('service_start_date', 'service_end_date', 'vehicle_ids')

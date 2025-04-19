@@ -28,7 +28,6 @@ Long description of module's purpose
         'views/autovoyage_services_view.xml',
         'views/res_users_view_inherit.xml',
         'views/autovoyage_vehicle_view.xml',
-        # 'views/autovoyage_service_cron.xml',
         'views/autovoyage_service_provider_create.xml',
         'views/vehicle_custom_views.xml',
         'views/menu.xml',

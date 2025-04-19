@@ -18,7 +18,6 @@ class AutovoyageServiceProvidersCreate(models.Model):
         results = super().create(vals_list)
         print(results)
         for res in results:
-            # print(res)
             usr = self.env['res.users'].sudo().create({
                 'name': res.name,
                 'email': res.email,

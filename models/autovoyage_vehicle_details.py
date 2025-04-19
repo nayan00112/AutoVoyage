@@ -29,13 +29,12 @@ class AutovoyageCustomVehicle(models.Model):
     
     @api.model
     def create(self, vals):
-        record = super().create(vals)
-        print(record.owener_id.id)
+        record = super().create(vals)        
         if not record.owener_id.id:
             record.owener_id = record.user_id
-        print(record.owener_id.id)
         if not record.owener_id.is_service_provider:
-            raise ValidationError('This owner id is not service provider!')
+            raise ValidationError('This owner id is not service provider!')        
+        record.user_id = record.owener_id
         product = self.env['product.template'].sudo().create({
             'name': record.name,
             'owener_id': record.owener_id.id,
