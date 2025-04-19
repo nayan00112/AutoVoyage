@@ -18,7 +18,7 @@
         action="autovoyage.autovoyage_service_provider_action" sequence="3" />
 
     <menuitem id="menu_autovoyage_vehicle" name="Vehicles" parent="menu_autovoyage_root"
-        action="autovoyage.action_autovoyage_vehicles" sequence="4" />
+        action="autovoyage.action_vehicle_custom" sequence="4" />
 
 
 </odoo>

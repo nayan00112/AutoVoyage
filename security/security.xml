@@ -26,18 +26,27 @@
         <field name="groups" eval="[(4, ref('autovoyage.group_service_provider_user'))]"/>
         <field name="domain_force">[('service_provider_id', '=', user.id)]</field>
     </record>
-
-    <record id="rule_user_can_only_see_product_template_if_is_vehicle" model="ir.rule">
-        <field name="name">rule user can only see product template if is vehicle</field>
-        <field name="model_id" ref="model_product_template" />
-        <field name="domain_force">[('is_vehicle', '=', 1)]</field>
+    
+    <record id="rule_service_provider_self_access_self_vehicle" model="ir.rule">
+        <field name="name">rule_service_provider_self_access_self_vehicle</field>
+        <field name="model_id" ref="model_autovoyage_vehicle_custom" />
+        <field name="groups" eval="[(4, ref('autovoyage.group_service_provider_user'))]"/>
+        <field name="domain_force">[('user_id', '=', user.id)]</field>
+        <field name="perm_read">1</field>
+        <field name="perm_write">1</field>
+        <field name="perm_create">1</field>
+        <field name="perm_unlink">1</field>
     </record>
 
-    <record id="rule_service_provider_can_only_access_own_vehicle" model="ir.rule">
-        <field name="name">rule service provider access only see own vehicle</field>
-        <field name="model_id" ref="model_product_template" />
+    <record id="rule_service_provider_self_edit_only" model="ir.rule">
+        <field name="name">rule_service_provider_self_edit_only</field>
+        <field name="model_id" ref="model_autovoyage_vehicle_custom" />
         <field name="groups" eval="[(4, ref('autovoyage.group_service_provider_user'))]"/>
-        <field name="domain_force">[('owener_id', '=', user.id)]</field>
+        <field name="domain_force">[('user_id', '=', user.id)]</field>
+        <field name="perm_read">1</field>
+        <field name="perm_write">1</field>
+        <field name="perm_create">1</field>
+        <field name="perm_unlink">1</field>
     </record>
 
 </odoo>

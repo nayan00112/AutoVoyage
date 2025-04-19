@@ -1,6 +1,13 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_autovoyage_service_all,autovoyage.autovoyage_service,model_autovoyage_service,base.group_user,1,1,1,1
-access_product_template_all,autovoyage.product_template,model_product_template,base.group_user,1,1,1,1
-access_res_users_all,autovoyage.res_users,model_res_users,base.group_user,1,1,1,1
+access_autovoyage_service_all,autovoyage.autovoyage_service,model_autovoyage_service,base.group_system,1,1,1,1
+access_product_template_all,autovoyage.product_template,model_product_template,base.group_system,1,1,1,1
+access_res_users_all,autovoyage.res_users,model_res_users,base.group_system,1,1,1,1
 access_autovoyage_createserviceprovider_admin,autovoyage.autovoyage.createserviceprovider,model_autovoyage_createserviceprovider,base.group_system,1,1,1,1
+
+
 access_autovoyage_service_service_provider,autovoyage.autovoyage_service,model_autovoyage_service,group_service_provider_user,1,1,1,1
+access_product_template_service_provider,autovoyage.product_template,model_product_template,group_service_provider_user,1,1,1,1
+access_res_users_service_provider,autovoyage.res_users,model_res_users,group_service_provider_user,1,1,0,0
+
+access_autovoyage_vehicle_custom_admin,autovoyage.vehicle.custom,model_autovoyage_vehicle_custom,base.group_system,1,1,1,1
+access_autovoyage_vehicle_custom_provider,autovoyage.vehicle.custom,model_autovoyage_vehicle_custom,group_service_provider_user,1,1,1,1

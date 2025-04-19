@@ -12,6 +12,7 @@ class AutovoyageServiceProviders(models.Model):
     @api.model_create_multi
     def create(self, vals_list):
         user = super().create(vals_list)
+        print(user.groups_id    )
         if user.is_service_provider:
             user.groups_id = [(4, self.env.ref('autovoyage.group_service_provider_user').id)]
         return user

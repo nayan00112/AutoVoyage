@@ -8,6 +8,7 @@ class AutovoyageServiceProvidersCreate(models.Model):
     name = fields.Char(required=True)
     email = fields.Char(required=True)    
     join_date = fields.Date(string="Join Date", default=fields.Date.today)
+    password = fields.Char(string="Password", required=True)
     user_id = fields.Many2one('res.users')
 
     @api.model_create_multi
@@ -22,18 +23,16 @@ class AutovoyageServiceProvidersCreate(models.Model):
                 'name': res.name,
                 'email': res.email,
                 'login': res.email,
+                'password': res.password,
                 'groups_id': [(6, 0, [
                     self.env.ref('autovoyage.group_service_provider_user').id,
-                    self.env.ref('base.group_user').id
+                    self.env.ref('base.group_user').id,
                 ])],
             })
             res.user_id = usr
             usr.is_service_provider = True
             print(usr)
         return results
-
-
-
 
     def write(self, vals):        
         res = super().write(vals)

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Action -->
+    <record id="action_vehicle_custom" model="ir.actions.act_window">
+        <field name="name">Vehicles</field>
+        <field name="res_model">autovoyage.vehicle.custom</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Register your custom vehicles here.
+            </p>
+        </field>
+    </record>
+    
+    <!-- list View -->
+    <record id="view_vehicle_custom_list" model="ir.ui.view">
+        <field name="name">autovoyage.vehicle.custom.list</field>
+        <field name="model">autovoyage.vehicle.custom</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="vehicle_model"/>
+                <field name="vehicle_number"/>
+                <field name="vehicle_fuel_type"/>
+                <field name="vehicle_milage"/>
+                <field name="per_day_cost"/>
+                <field name="is_available"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_vehicle_custom_form" model="ir.ui.view">
+        <field name="name">autovoyage.vehicle.custom.form</field>
+        <field name="model">autovoyage.vehicle.custom</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="owener_id" domain='[("is_service_provider", "=", 1)]' groups="base.group_system"/>                        
+                        <field name="vehicle_model"/>
+                        <field name="vehicle_number"/>
+                        <field name="vehicle_buy_date"/>
+                        <field name="vehicle_fuel_type"/>
+                        <field name="vehicle_milage"/>
+                        <field name="per_day_cost"/>
+                        <field name="is_available"/>
+                        <field name="owener_id" readonly='true'></field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    
+
+</odoo>
