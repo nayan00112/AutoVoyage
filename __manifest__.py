@@ -22,12 +22,14 @@ Long description of module's purpose
 
     # always loaded
     'data': [
+        'security/security.xml',
         'security/ir.model.access.csv',
         'views/autovoyage_service_sequence.xml',
         'views/autovoyage_services_view.xml',
-        'views/res_partner_view_inherit.xml',
+        'views/res_users_view_inherit.xml',
         'views/autovoyage_vehicle_view.xml',
         'views/autovoyage_service_cron.xml',
+        'views/autovoyage_service_provider_create.xml',
         'views/menu.xml',
     ],
 

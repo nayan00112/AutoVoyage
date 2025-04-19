@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <record id="autovoyage_service_provider_action" model="ir.actions.act_window">
+        <field name="name">Service Provider</field>
+        <field name="res_model">res.users</field>
+        <field name="view_mode">list,form</field>
+        <!-- <field name="context">{'search_default_is_service_provider': 1}</field> -->
+    </record>
+
+    <record id="view_partner_form_inherit_autovoyage" model="ir.ui.view">
+        <field name="name">res.users.view.form.inherit</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page name="service_provider" string="Service Provider">
+                    <form>
+                        <group name="service_provider" string="Servive Provider">
+                            <field name="is_service_provider" string='Is Service provider: ' />
+                        </group>
+                    </form>
+                </page>
+            </xpath>
+            <xpath expr="//page" position="after">
+                <page name="vehicle information" string="Vehicle Information"
+                    invisible='not is_service_provider'>
+                    <field name="vehicle_ids"
+                        context="{'default_is_vehicle': True, 'default_is_avaliable': True, 'default_owener_id': id}" />
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

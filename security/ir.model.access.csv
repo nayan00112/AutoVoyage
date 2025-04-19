@@ -1,4 +1,6 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_autovoyage_service,autovoyage.autovoyage_service,model_autovoyage_service,base.group_user,1,1,1,1
-access_product_template,autovoyage.product_template,model_product_template,base.group_user,1,1,1,1
-access_res_partner,autovoyage.res_partner,model_res_partner,base.group_user,1,1,1,1
+access_autovoyage_service_all,autovoyage.autovoyage_service,model_autovoyage_service,base.group_user,1,1,1,1
+access_product_template_all,autovoyage.product_template,model_product_template,base.group_user,1,1,1,1
+access_res_users_all,autovoyage.res_users,model_res_users,base.group_user,1,1,1,1
+access_autovoyage_createserviceprovider_admin,autovoyage.autovoyage.createserviceprovider,model_autovoyage_createserviceprovider,base.group_system,1,1,1,1
+access_autovoyage_service_service_provider,autovoyage.autovoyage_service,model_autovoyage_service,group_service_provider_user,1,1,1,1

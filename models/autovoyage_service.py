@@ -23,25 +23,27 @@ class AutovoyageService(models.Model):
         ('cancelled', 'Cancelled'),
     ]
     
-    service_consumer_id = fields.Many2one('res.partner')
-    service_provider_id = fields.Many2one('res.partner')
+    service_consumer_id = fields.Many2one('res.users')
+    service_provider_id = fields.Many2one('res.users', default=lambda self: self.env.user)
     vehicle_ids = fields.Many2many('product.template')
     service_start_date = fields.Date()
     service_end_date = fields.Date()
     service_status = fields.Selection(SERVICE_STATUS, string="Service Status", compute="_compute_service_status", store=True)
-
     user_review = fields.Selection(USER_REVIEW)
-    
     description = fields.Text()
-    
     amount = fields.Float('Price', compute='_compute_ammount')
     
     @api.model
     def create(self, vals):
+        if not self.env['res.users'].sudo().search([('id', '=', vals.get('service_provider_id', self.env.user.id))]).is_service_provider:
+            raise ValidationError('Please select valid service provider.')
+        
         if vals.get('name', 'New') == 'New':
             vals['name'] = self.env['ir.sequence'].next_by_code('autovoyage.service') or '/'
-        
+
         for record in self:
+            print('=============-=-=---')
+            print(record.service_provider_id)
             for vehicle in record.vehicle_ids:
                 if record.service_status in ['completed', 'cancelled']:
                     vehicle.is_avaliable = False
@@ -161,13 +163,11 @@ class AutovoyageService(models.Model):
                 record.amount = total_cost
             else:
                 record.amount = 0.0
-                
-                
-    # def confirm_service(self):
-    #     print('confirm_service')
         
     def confirm_service(self):
         for record in self:
+            if record.service_status == 'cancelled':
+                raise ValidationError('Can not generate sale order of "cancled" service state.')
             if not record.vehicle_ids:
                 raise ValidationError("Please select at least one vehicle to confirm the service.")
             if not record.service_consumer_id:
@@ -179,17 +179,7 @@ class AutovoyageService(models.Model):
                 'date_order': fields.Datetime.now(),
                 'origin': record.name,
             })
-            
-            # Add vehicles as sale order lines
-            # for vehicle in record.vehicle_ids:
-            #     self.env['sale.order.line'].create({
-            #         'order_id': sale_order.id,
-            #         'product_id': vehicle.id,
-            #         'product_uom_qty': 1,  # Quantity is 1 for each vehicle
-            #         'price_unit': vehicle.per_day_cost * ((record.service_end_date - record.service_start_date).days + 1),
-            #         'name': f"Service for {vehicle.name} ({record.service_start_date} to {record.service_end_date})",
-            #     })
-            
+           
             order_lines_list = []
             for vehicle in record.vehicle_ids:
                 product_variant = vehicle.product_variant_id
@@ -203,11 +193,7 @@ class AutovoyageService(models.Model):
                     'price_unit': vehicle.per_day_cost * ((record.service_end_date - record.service_start_date).days + 1),
                 }))
             sale_order.order_line = order_lines_list
-            
 
-            
-            # Update the service status to 'active'
-            # record.service_status = 'active'
             return {
                 'type': 'ir.actions.act_window',
                 'res_model': 'sale.order',
@@ -216,5 +202,24 @@ class AutovoyageService(models.Model):
                 'target': 'current',
             }
     def cancle_service(self):
+        print(self.vehicle_ids.is_avaliable)
+        self.service_status = "cancelled"
+        # If service is cancle, then vehicle avaliable is true at this cancled
+        # time period of service then, for creating other autovoyage services, 
+        # when we looking for any vehicle avaliability in autovoyage services
+        # then it must be check where then that autvoyage service's field status is
+        # cancle or not, if cancle then ignore this as cancled services 
+        # vehicles are avaliabled.
+        
         print('cancle_service')
         
+    def write(self, vals):
+        if self.service_status in ('cancelled', 'completed'):
+            raise ValidationError('Service State "completed" and "cancled" can not be modified!')
+        super().write(vals)
+    
+    def unlink(self):
+        if self.service_status in ('cancelled', 'completed'):
+            raise ValidationError('Service State "completed" and "cancled" can not be delete.')
+        super().unlink()
+                

@@ -19,6 +19,7 @@
                     <group>
                         <field name="name" />
                         <field name="vehicle_model" />
+                        <field name="vehicle_number" />
                         <field name="vehicle_fule_type" />
                         <field name="vehicle_milage" />
                         <field name="vehicle_buy_date" />

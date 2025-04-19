@@ -6,8 +6,9 @@ from odoo.exceptions import ValidationError
 class AutovoyageVehicle(models.Model):
     _inherit = "product.template"
     
-    owener_id = fields.Many2one('res.partner')
+    owener_id = fields.Many2one('res.users')
     vehicle_model = fields.Char(string="Vehicle Model")
+    vehicle_number = fields.Char(string="Vehicle number")
     vehicle_buy_date = fields.Date(string="Vehicle Buy Date")
     vehicle_fule_type = fields.Selection([
         ('petrol', 'Petrol'),

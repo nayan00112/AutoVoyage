@@ -4,15 +4,21 @@
     <!-- Menu Item (Optional: Add under an existing menu or define a new one) -->
     <menuitem id="menu_autovoyage_root" name="AutoVoyage" sequence="10" />
 
-    <menuitem id="menu_autovoyage_service" name="Services" parent="menu_autovoyage_root"
-        action="action_autovoyage_service" sequence="20" />
-
-    <menuitem id="menu_autovoyage_Service_Provider" name="Service Provider"
+    <menuitem id="menu_autovoyage_service_providers"
+        name="Create Service Provider"
         parent="menu_autovoyage_root"
-        action="autovoyage.autovoyage_service_provider_action" sequence="20" />
-    
+        action="action_autovoyage_service_providers"
+        sequence='2' />
+
+    <menuitem id="menu_autovoyage_service" name="Services" parent="menu_autovoyage_root"
+        action="action_autovoyage_service" sequence="1" />
+
+    <menuitem id="menu_autovoyage_Service_Provider" name="Service Providers"
+        parent="menu_autovoyage_root"
+        action="autovoyage.autovoyage_service_provider_action" sequence="3" />
+
     <menuitem id="menu_autovoyage_vehicle" name="Vehicles" parent="menu_autovoyage_root"
-        action="autovoyage.action_autovoyage_vehicles" sequence="20" />
+        action="autovoyage.action_autovoyage_vehicles" sequence="4" />
 
 
 </odoo>

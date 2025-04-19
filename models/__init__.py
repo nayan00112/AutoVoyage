@@ -3,3 +3,4 @@
 from . import autovoyage_service
 from . import autovoyage_service_provider
 from . import autovoyage_vehicle
+from . import autovoyage_service_provider_create
