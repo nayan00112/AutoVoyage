@@ -41,9 +41,7 @@ class AutovoyageService(models.Model):
         if vals.get('name', 'New') == 'New':
             vals['name'] = self.env['ir.sequence'].next_by_code('autovoyage.service') or '/'
 
-        for record in self:
-            print('=============-=-=---')
-            print(record.service_provider_id)
+        for record in self:    
             for vehicle in record.vehicle_ids:
                 if record.service_status in ['completed', 'cancelled']:
                     vehicle.is_avaliable = False
@@ -76,37 +74,6 @@ class AutovoyageService(models.Model):
         if self.service_provider_id:
             self.vehicle_ids = [(5, 0, 0)]  # Clear vehicle_ids instantly
             
-
-    # @api.onchange('service_start_date', 'service_end_date', 'vehicle_ids')
-    # def _check_is_this_vechile_avaliable(self):
-    #     print(self.id)
-    #     for record in self:    
-    #         if record.service_start_date and record.service_end_date and record.vehicle_ids:
-    #             exist_services = self.env['autovoyage.service'].search([('vehicle_ids', 'in', record.vehicle_ids.ids)])
-    #             for es in exist_services:
-                    
-    #                 if (str(record.id).split('_')[1] != (str(es.id))):
-    #                     print("es: ",es.id)
-                       
-    #                     # if (record.service_start_date > record.service_end_date):
-                            
-    #                     #     raise ValidationError("Service Start Date must be before End Date.----------------")
-                        
-    #                     override = not (es.service_start_date > record.service_end_date or es.service_end_date < record.service_start_date)
-    #                     if override:
-    #                         print(es.service_start_date, es.service_end_date)
-    #                         print(record.service_start_date, record.service_end_date)
-    #                         print('================', record.vehicle_ids.id)
-    #                         vname = record.vehicle_ids.name 
-    #                         record.vehicle_ids = [(3, record.vehicle_ids.id, 0)]
-    #                         # (if this conditon true then latest changes rolback )
-    #                         raise ValidationError("Vehicle "+  vname + " is already booked for given time period")
-    #                     else:
-    #                         print(es.service_start_date, es.service_end_date)
-    #                         print(record.service_start_date, record.service_end_date)
-    #                         print('---------------------------------')
-    
-    
     @api.onchange('service_start_date', 'service_end_date', 'vehicle_ids')
     def _check_is_this_vehicle_available(self):
         for record in self:
@@ -193,8 +160,8 @@ class AutovoyageService(models.Model):
                 'res_id': sale_order.id,
                 'target': 'current',
             }
+            
     def cancle_service(self):
-        print(self.vehicle_ids.is_avaliable)
         self.service_status = "cancelled"
         # If service is cancle, then vehicle avaliable is true at this cancled
         # time period of service then, for creating other autovoyage services, 
@@ -202,8 +169,6 @@ class AutovoyageService(models.Model):
         # then it must be check where then that autvoyage service's field status is
         # cancle or not, if cancle then ignore this as cancled services 
         # vehicles are avaliabled.
-        
-        print('cancle_service')
         
     def write(self, vals):
         if self.service_status in ('cancelled', 'completed'):

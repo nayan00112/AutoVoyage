@@ -13,10 +13,9 @@ class AutovoyageServiceProvidersCreate(models.Model):
 
     @api.model_create_multi
     def create(self, vals_list):
-        print()
         
         results = super().create(vals_list)
-        print(results)
+
         for res in results:
             usr = self.env['res.users'].sudo().create({
                 'name': res.name,
@@ -30,7 +29,7 @@ class AutovoyageServiceProvidersCreate(models.Model):
             })
             res.user_id = usr
             usr.is_service_provider = True
-            print(usr)
+
         return results
 
     def write(self, vals):        
@@ -41,7 +40,7 @@ class AutovoyageServiceProvidersCreate(models.Model):
                 'login': vals.get('email')
             })
         stud.sudo().write(vals)        
-        print(vals, res)
+
         return res
     
     def unlink(self):
