@@ -47,6 +47,7 @@
                         <field name="vehicle_milage"/>
                         <field name="per_day_cost"/>
                         <field name="is_available"/>
+                        <field name="vehicle_image"></field>
                         <field name="owener_id" string='Owner ID' readonly='true'></field>
                     </group>
                 </sheet>

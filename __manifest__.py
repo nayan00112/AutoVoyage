@@ -18,7 +18,7 @@ Long description of module's purpose
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'sale_management'],
+    'depends': ['base', 'sale_management', 'website'],
 
     # always loaded
     'data': [
@@ -30,9 +30,18 @@ Long description of module's purpose
         'views/autovoyage_vehicle_view.xml',
         'views/autovoyage_service_provider_create.xml',
         'views/vehicle_custom_views.xml',
+        'views/snippets/s_services_vehicles.xml',
+        'views/snippets/option.xml',
         'views/menu.xml',
+        'data/menu.xml',
+        'views/templates.xml',
     ],
 
+    'assets': {
+        'web.assets_frontend': [
+            'autovoyage/static/src/snippets/s_services_vehicles/000.js',
+        ],  
+    },
     'installable':True,
     'application':True,
     

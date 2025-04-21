@@ -26,6 +26,7 @@ class AutovoyageCustomVehicle(models.Model):
     is_available = fields.Boolean(default=True)
     product_template_id = fields.Many2one('product.template', string="Linked Product", readonly=True)
     user_id = fields.Many2one("res.users",default = lambda self: self.env.user)
+    vehicle_image = fields.Binary('Vehicle Image')
     
     @api.model
     def create(self, vals):
@@ -46,6 +47,7 @@ class AutovoyageCustomVehicle(models.Model):
             'per_day_cost': record.per_day_cost,
             'is_vehicle': True,
             'is_avaliable': record.is_available,
+            'image_1920': record.vehicle_image,
         })
         record.product_template_id = product.id
         return record
@@ -73,6 +75,8 @@ class AutovoyageCustomVehicle(models.Model):
                     product_vals['per_day_cost'] = vals['per_day_cost']
                 if 'is_available' in vals:
                     product_vals['is_avaliable'] = vals['is_available']
+                if 'vehicle_image' in vals:
+                    product_vals['image_1920'] = vals['vehicle_image']  
                 
                 record.product_template_id.sudo().write(product_vals)
         return res

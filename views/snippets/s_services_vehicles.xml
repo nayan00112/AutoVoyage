@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="s_services_vehicles" name="s_services_vehicles">
+        <section class="s_services_vehicles">
+            <div class="container">
+                <div class="boxcontainer" style="display: flex; justify-content: space-evenly; flex-direction: row; flex-wrap: wrap;">
+                    <div class='container border p-3'>
+                        wait ...
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+
+</odoo>

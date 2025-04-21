@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="snippets" inherit_id="website.snippets" name="Autovoyage - service vehicles">
+        <!-- Create the group -->
+        <xpath expr="//snippets[@id='snippet_groups']/*[1]" position="before">
+            <t snippet-group="autovoyage" t-snippet="website.s_snippet_group" string="Autovoyage"
+                t-thumbnail="" />
+        </xpath>
+
+        <!-- Add the custom snippet to the group -->
+        <!-- <xpath expr="//snippets[@id='snippet_structure']/*[1]" position="before">
+       <t t-snippet="autovoyage.s_services_vehicles" string="Autovoyage - service vehicles snippet"
+    group="autovoyage">
+          <keywords>Snippet</keywords>
+       </t>
+    </xpath> -->
+
+        <xpath expr="//snippets[@id='snippet_content']/*[1]" position="before">
+            <t t-snippet="autovoyage.s_services_vehicles"
+                string="Autovoyage - service vehicles snippet"
+                group="autovoyage" />
+        </xpath>
+    </template>
+</odoo>
