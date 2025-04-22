@@ -10,3 +10,6 @@ Subscription plans
 (Subscriptions ‣ Configuration ‣ Plans)
 
 
+Invoicing based on time and materials 
+(not find options in settings.)
+

@@ -176,7 +176,8 @@ class AutovoyageService(models.Model):
         super().write(vals)
     
     def unlink(self):
-        if self.service_status in ('cancelled', 'completed'):
-            raise ValidationError('Service State "completed" and "cancled" can not be delete.')
+        for record in self:
+            if record.service_status in ('cancelled', 'completed'):
+                raise ValidationError('Service State "completed" and "cancled" can not be delete.')
         super().unlink()
                 

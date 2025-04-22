@@ -46,5 +46,5 @@ class AutovoyageServiceProvidersCreate(models.Model):
     def unlink(self):
         for record in self:
             if record.user_id:
-                self.env['res.users'].search([('id', '=', self.user_id.id)]).unlink()
+                self.env['res.users'].search([('id', '=', record.user_id.id)]).unlink()
         return super().unlink()
