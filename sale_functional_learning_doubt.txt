@@ -1,0 +1,12 @@
+
+
+Default Recurrence: Select a default period from the drop-down menu to use as a recurrence period for a new quotation.
+
+Pro-Forma Invoice: Send pro-forma invoices to customers.
+
+If the customer was referred by another customer or contact, enter their name in the Referrer field.
+
+Subscription plans
+(Subscriptions ‣ Configuration ‣ Plans)
+
+

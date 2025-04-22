@@ -32,7 +32,9 @@ publicWidget.registry.AutovoyageServiceVehicles = publicWidget.Widget.extend({
         vehicles.forEach(vehicle => {
             const cardHtml = `
                 <div class="card" style="width: 18rem;">
-                <img src="${vehicle.image_url}" class="card-img-top" alt="${vehicle.name}" />
+                    <div style="position: relative; width: 100%; padding-top: 56.25%; overflow: hidden; border-top-left-radius: 0.375rem; border-top-right-radius: 0.375rem;">
+                        <img src="${vehicle.image_url}" alt="${vehicle.name}" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;" />
+                    </div>
                 <div class="card-body">
                         <h5 class="card-title">${vehicle.name}</h5>
                         <p class="card-text mb-1"><strong>Model:</strong> ${vehicle.vehicle_model || 'N/A'}</p>

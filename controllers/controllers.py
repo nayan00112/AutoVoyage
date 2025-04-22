@@ -1,6 +1,6 @@
 from odoo import http
 from odoo.http import request
-from psycopg2 import Binary
+# from psycopg2 import Binary
 # from odoo.addons.web.controllers.main import Binary
 
 class AutovoyageController(http.Controller):
@@ -17,18 +17,18 @@ class AutovoyageController(http.Controller):
                 'service_provider': vehicle.owener_id.name,
                 'vehicle_fule_type': vehicle.vehicle_fule_type,
                 'per_day_cost': vehicle.per_day_cost,
-                'image_url': f'/autovoyage/vehicle_image/{vehicle.id}',
+                'image_url': f'/web/image/product.template/{vehicle.id}/image_256',
             })
         return vehicle_data
     
-    @http.route('/autovoyage/vehicle_image/<int:vehicle_id>', type='http', auth='public', website=True)
-    def vehicle_image(self, vehicle_id):
-        return Binary().content_image(
-            model='product.template',
-            id=vehicle_id,
-            field='image_256',
-            filename_field='name',
-        )
+    # @http.route('/autovoyage/vehicle_image/<int:vehicle_id>', type='http', auth='public', website=True)
+    # def vehicle_image(self, vehicle_id):
+    #     return Binary().content_image(
+    #         model='product.template',
+    #         id=vehicle_id,
+    #         field='image_256',
+    #         filename_field='name',
+    #     )
         
     @http.route('/autovoyage/book_vehicle/<int:vehicle_id>', type='http', auth='user', website=True)
     def book_vehicle(self, vehicle_id):
