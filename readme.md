@@ -4,3 +4,7 @@ python3 odoo-bin --addons-path=addons,/home/nayan/odoo_self_learn/AutoVoyagev2/ 
 
  python3 odoo-bin --addons-path=addons,/home/nayan/odoo_self_learn/AutoVoyagev2/ -d avnayan3 -p 8890 -u autovoyage --dev xml
 
+
+
+final:
+python3 odoo-bin --addons-path=addons,/home/nayan/odoo_self_learn/AutoVoyagev2/ -d  avnayan3_test   -p 8890 -u autovoyage --dev xml
