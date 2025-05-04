@@ -11,3 +11,5 @@ access_res_users_service_provider,autovoyage.res_users,model_res_users,group_ser
 
 access_autovoyage_vehicle_custom_admin,autovoyage.vehicle.custom,model_autovoyage_vehicle_custom,base.group_system,1,1,1,1
 access_autovoyage_vehicle_custom_provider,autovoyage.vehicle.custom,model_autovoyage_vehicle_custom,group_service_provider_user,1,1,1,1
+
+access_product_template_service_portal,autovoyage.product_template,model_product_template,base.group_portal,1,0,0,0
