@@ -41,6 +41,7 @@ class AutovoyageController(http.Controller):
             'vehicle_fule_type': vehicle.vehicle_fule_type,
             'vehicle_milage': vehicle.vehicle_milage,
             'per_day_cost': vehicle.per_day_cost,
+            'service_provider': vehicle.owener_id.name,
         }
         return request.render("autovoyage.book_vehicle_template", vehicle_details)
     

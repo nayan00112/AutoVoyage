@@ -14,6 +14,12 @@
                             <t t-esc="name" />
                         </h1>
                         <p>
+                            <strong>
+                                Service Provider:
+                            </strong>
+                            <t t-out="service_provider"/>
+                        </p>
+                        <p>
                             <strong>Model:</strong>
                             <t t-esc="vehicle_model" />
                         </p>
@@ -26,7 +32,7 @@
                             <t t-esc="vehicle_fule_type" />
                         </p>
                         <p><strong>Milage:</strong> <t t-esc="vehicle_milage" /> km/l</p>
-                        <p><strong>Rent Per Day:</strong> ₹<t t-esc="per_day_cost" /></p>
+                        <p><strong>Rent Per Day:</strong> $<t t-esc="per_day_cost" /></p>
                     </div>
                 </div>
 
