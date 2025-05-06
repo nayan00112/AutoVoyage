@@ -20,8 +20,11 @@
     <!-- <menuitem id="menu_autovoyage_vehicle" name="Vehicles" parent="menu_autovoyage_root"
         action="autovoyage.action_vehicle_custom" sequence="4" /> -->
 
-        <menuitem id="menu_autovoyage_vehicle" name="Vehicles" parent="menu_autovoyage_root"
+        <!-- <menuitem id="menu_autovoyage_vehicle" name="Vehicles" parent="menu_autovoyage_root"
         action="sale.product_template_action" sequence="4" />
+         -->
+        <menuitem id="menu_autovoyage_vehicle" name="Vehicles" parent="menu_autovoyage_root"
+        action="autovoyage.action_products_template_custom_view" sequence="4" />
         
 
 </odoo>
