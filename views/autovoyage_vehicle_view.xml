@@ -36,7 +36,7 @@
         </field>
     </record>
 
-
+<!-- 
     <record id="view_product_template_autovoyage_report_search" model="ir.ui.view">
         <field name="name">product.template.search</field>
         <field name="model">product.template</field>
@@ -44,6 +44,20 @@
             <search string="Vehicles">
                 <filter name="is_vehicle" string="IsVehicle" domain="[('is_vehicle', '=', True)]"/>
             </search>
+        </field>
+    </record> -->
+
+    <record id="view_product_template_search_inherit_vehicle" model="ir.ui.view">
+        <field name="name">product.template.search.inherit.yamaha</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_search_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//filter" position="after">
+                <separator/>
+                <filter string="Vehicles" name="Vehicle_products"
+                    domain="[('is_vehicle', '=', True)]" />
+                <separator/>
+            </xpath>
         </field>
     </record>
 

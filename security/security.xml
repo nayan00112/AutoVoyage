@@ -48,5 +48,4 @@
         <field name="perm_create">1</field>
         <field name="perm_unlink">1</field>
     </record>
-
 </odoo>
